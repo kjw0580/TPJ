@@ -38,6 +38,18 @@ public class MainController {
 		
 	}
 	
+	//상품보기 페이지 요청
+	@GetMapping("/item/view")
+	public String getView() {
+		return "item/view";
+	}
+	
+	//공지사항 보기
+	@GetMapping("/member/notice")
+	public String getNotice() {
+		return "member/notice";
+	}
+	
 	
 	
 }

@@ -32,6 +32,9 @@ public class ItemController {
    
    private final ItemService itemService;
    
+   
+   
+   
    //상품 등록 페이지 요청
    @GetMapping("/admin/item/new")
    public String itemForm(Model model) {
@@ -127,4 +130,11 @@ public class ItemController {
       model.addAttribute("item",itemFormDto);
       return "item/itemDtl";
    }
+   
+   //문의사항 보기
+ 	@GetMapping("/item/qna")
+ 	public String getQna() {
+ 		return "item/qna";
+ 	}
+   
 }
