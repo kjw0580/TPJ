@@ -1,0 +1,12 @@
+무조건 cmd 에서
+git pull (origin master)
+
+하고
+git add .             / 추가확인은 git status
+git commit -m "메세지내용"
+git push (origin master)
+
+그리고 깃허브 가서 확인하기 ><
+팀플 깃 주소!
+https://github.com/kjw0580/TeamProject
+
