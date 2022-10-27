@@ -2,7 +2,7 @@
 git pull (origin master)
 
 하고
-git add . 
+git add .             / 추가확인은 git status
 git commit -m "메세지내용"
 git push (origin master)
 
