@@ -5,6 +5,6 @@ create database xmas;
 grant all privileges on xmas.* to root@localhost with grant option;
 
 show databases;
-use shopdb;
+use xmas;
 show tables;
 
