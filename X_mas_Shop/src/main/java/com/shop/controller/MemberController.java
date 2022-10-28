@@ -64,4 +64,20 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
+	
+	
+	//상품보기
+	@GetMapping("/view")
+	public String getVeiw() {
+		return "item/view";
+				
+	}
+	
+	//공지사항 보기
+	@GetMapping("/notice")
+	public String getNoti() {
+		return "item/notice";
+				
+	}
+		
 }

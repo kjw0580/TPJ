@@ -31,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class ItemController {
 	
 	private final ItemService itemService;
+		
 	
 	//상품 등록 페이지 요청
 	@GetMapping("/admin/item/new")
