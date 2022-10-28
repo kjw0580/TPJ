@@ -14,6 +14,7 @@ import com.shop.config.BaseEntity;
 import com.shop.constant.Role;
 import com.shop.dto.MemberFormDto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
