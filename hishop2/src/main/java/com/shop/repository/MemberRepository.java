@@ -7,4 +7,7 @@ import com.shop.entity.Member;
 public interface MemberRepository extends JpaRepository<Member, Long>{
 	//이메일 가져오기(중복 체크를 위해)
 	Member findByEmail(String email);
+	
+	//이름 가져오기 
+	Member findByName(String name);
 }
