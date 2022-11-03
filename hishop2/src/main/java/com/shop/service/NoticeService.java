@@ -46,7 +46,10 @@ public interface NoticeService {
                .content(entity.getContent())
                .writer(entity.getWriter())
                .cnt(entity.getCnt())
+               .reg_time(entity.getRegTime())
+               .update_time(entity.getUpdateTime())
                .build();
+      
          return dto;
       }
 
