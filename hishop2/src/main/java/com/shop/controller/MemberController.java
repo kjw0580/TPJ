@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,5 +64,13 @@ public class MemberController {
 			return "member/memberForm";
 		}
 		return "redirect:/";
+	}
+	
+	//회원 정보 보기
+	@GetMapping("/view{name}")
+	public String view(@AuthenticationPrincipal String email, Model model) {
+		Member member = memberService.view(email);
+		model.addAttribute("member", member);
+		return "member/view";
 	}
 }
