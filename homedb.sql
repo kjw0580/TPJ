@@ -10,6 +10,7 @@ show tables;
 
 select * from member;
 select * from notice;
+select * from customer;
 select * from reply;
 select * from item order by reg_time desc;
 select * from item_img order by reg_time desc;

@@ -35,6 +35,10 @@ public class Notice extends BaseEntity{
 	@Column(length = 50, nullable = false)
 	private String writer;
 	
+	@Column(nullable = false, 
+			columnDefinition = "bigint DEFAULT 0")
+	private Long cnt = 0L;
+	
 	
 	//수정 시간 테스트 메서드 생성
 	public void changeTitle(String title) {

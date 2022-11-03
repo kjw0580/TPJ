@@ -17,6 +17,9 @@ public interface CustomerService {
    //게시글 상세보기
    CustomerDto read(Long gno);
    
+   //조회수
+   void updateCount(Long gno);
+   
    
    
    //자바 8버전부터 구체 메소드 사용 가능(default 키워드로 가능)
@@ -26,6 +29,7 @@ public interface CustomerService {
                               .title(dto.getTitle())
                               .content(dto.getContent())
                               .writer(dto.getWriter())
+                              .cnt(dto.getCnt())
                               .build();
       return entity;
    }
@@ -38,6 +42,7 @@ public interface CustomerService {
                .writer(customer.getWriter())
                .regDate(customer.getRegTime())
                .modDate(customer.getUpdateTime())
+               .cnt(customer.getCnt())
                .build();
          return dto;
       }

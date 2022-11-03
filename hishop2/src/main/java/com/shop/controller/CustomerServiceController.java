@@ -45,6 +45,9 @@ public class CustomerServiceController {
    @GetMapping("/read")
    public void read(Long gno, Model model , 
          @ModelAttribute("requestDto") PageRequestDto requestDto) {
+	   //조회수 증가
+	   service.updateCount(gno);
+	   
       CustomerDto dto = service.read(gno);   //게시글 1개
       model.addAttribute("dto", dto);
    }

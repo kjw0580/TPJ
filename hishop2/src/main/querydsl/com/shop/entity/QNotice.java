@@ -21,6 +21,8 @@ public class QNotice extends EntityPathBase<Notice> {
 
     public final com.shop.config.QBaseEntity _super = new com.shop.config.QBaseEntity(this);
 
+    public final NumberPath<Long> cnt = createNumber("cnt", Long.class);
+
     public final StringPath content = createString("content");
 
     //inherited

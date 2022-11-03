@@ -3,6 +3,8 @@ package com.shop.service;
 import java.util.Optional;
 import java.util.function.Function;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -96,6 +98,14 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			return booleanBuilder;
 		}
+
+		//조회수
+		@Override
+		public void updateCount(Long gno) {
+			repository.updateCount(gno);
+			
+		}
+	
 		
 	   
 	   
