@@ -52,5 +52,18 @@ public class NoticeController {
       model.addAttribute("dto", dto);
    }
    
+   //글 삭제
+   @GetMapping("/delete")
+   public String delete(Long gno) {
+	   service.remove(gno);
+	   return "redirect:list";
+   }
+   
+   //글 수정
+   @PostMapping("update")
+   public String modify(NoticeDto noticeDto) {
+	   service.modify(noticeDto);
+	   return "redirect:list";
+   }
    
 }

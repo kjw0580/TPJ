@@ -11,7 +11,6 @@ import com.shop.config.BaseEntity;
 import groovy.transform.ToString;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +37,8 @@ public class Notice extends BaseEntity{
 	@Column(nullable = false, 
 			columnDefinition = "bigint DEFAULT 0")
 	private Long cnt = 0L;
+	
+	
 	
 	
 	//수정 시간 테스트 메서드 생성

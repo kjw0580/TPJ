@@ -18,5 +18,8 @@ public interface NoticeRepository  extends JpaRepository<Notice, Long>,
 	@Modifying
 	@Query("UPDATE Notice n SET n.cnt = n.cnt + 1 WHERE n.gno = :gno")
 	void updateCount(@Param("gno") Long gno);
+	
+	//게시글 수정
+	
 
 }

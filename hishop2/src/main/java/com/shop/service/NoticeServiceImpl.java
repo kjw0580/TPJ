@@ -65,48 +65,68 @@ public class NoticeServiceImpl implements NoticeService{
 		return result.isPresent() ? entityToDto(result.get()) : null;
 	}
 	
-	//검색 처리
-	private BooleanBuilder getSearch(PageRequestDto requestDto) {
-		String type = requestDto.getType();
-		String keyword = requestDto.getKeyword();
-		
-		BooleanBuilder booleanBuilder = new BooleanBuilder();
-		
-		QNotice qNotice = QNotice.notice;
-		
-		BooleanExpression expression = qNotice.gno.gt(0L); // gno > 0 
-		booleanBuilder.and(expression);
-		
-		//검색 조건이 없는 경우 null 처리
-		if(type == null || type.trim().length() == 0 ) {
-			return booleanBuilder;
-		}
-		
-		
-		//검색조건 작성
-		BooleanBuilder conditionBuilder = new BooleanBuilder();
-		if(type.contains("t")) {
-			conditionBuilder.or(qNotice.title.contains(keyword));
-		}
-		if(type.contains("c")) {
-			conditionBuilder.or(qNotice.content.contains(keyword));
-		}
-		if(type.contains("w")) {
-			conditionBuilder.or(qNotice.writer.contains(keyword));
-		}
-		//모든 조건 종합
-		booleanBuilder.and(conditionBuilder);
-		
-		return booleanBuilder;
-	}
-
+	//조회수
 	@Override
 	public void updateCount(Long gno) {
 		repository.updateCount(gno);
 		
 	}
+
+	//게시글 삭제
+	@Override
+	public void remove(Long gno) {
+		repository.deleteById(gno);
+		
+	}
+
+	//게시글 수정
+	@Override
+	public void modify(NoticeDto dto) {
+		//수정할 게시글 가져오기
+		Notice notice = repository.findById(dto.getGno()).get();
+		
+		//게시글 수정
+		notice.changeTitle(dto.getTitle());
+		notice.changeContent(dto.getContent());
+		
+		//수정 저장
+		repository.save(notice);
+	}
 	
-	
+	//검색 처리
+		private BooleanBuilder getSearch(PageRequestDto requestDto) {
+			String type = requestDto.getType();
+			String keyword = requestDto.getKeyword();
+			
+			BooleanBuilder booleanBuilder = new BooleanBuilder();
+			
+			QNotice qNotice = QNotice.notice;
+			
+			BooleanExpression expression = qNotice.gno.gt(0L); // gno > 0 
+			booleanBuilder.and(expression);
+			
+			//검색 조건이 없는 경우 null 처리
+			if(type == null || type.trim().length() == 0 ) {
+				return booleanBuilder;
+			}
+			
+			
+			//검색조건 작성
+			BooleanBuilder conditionBuilder = new BooleanBuilder();
+			if(type.contains("t")) {
+				conditionBuilder.or(qNotice.title.contains(keyword));
+			}
+			if(type.contains("c")) {
+				conditionBuilder.or(qNotice.content.contains(keyword));
+			}
+			if(type.contains("w")) {
+				conditionBuilder.or(qNotice.writer.contains(keyword));
+			}
+			//모든 조건 종합
+			booleanBuilder.and(conditionBuilder);
+			
+			return booleanBuilder;
+		}
       
    
 }

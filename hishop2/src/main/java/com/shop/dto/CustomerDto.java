@@ -17,5 +17,5 @@ public class CustomerDto {
    private String content;
    private String writer;
    private Long cnt = 0L;
-   private LocalDateTime regDate, modDate;
+   
 }

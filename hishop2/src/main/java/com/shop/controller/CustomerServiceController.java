@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.dto.CustomerDto;
+import com.shop.dto.NoticeDto;
 import com.shop.dto.PageRequestDto;
 import com.shop.service.CustomerService;
 
@@ -50,6 +51,20 @@ public class CustomerServiceController {
 	   
       CustomerDto dto = service.read(gno);   //게시글 1개
       model.addAttribute("dto", dto);
+   }
+   
+ //글 삭제
+   @GetMapping("/delete")
+   public String delete(Long gno) {
+	   service.remove(gno);
+	   return "redirect:list";
+   }
+   
+   //글 수정
+   @PostMapping("update")
+   public String modify(CustomerDto customerDto) {
+	   service.modify(customerDto);
+	   return "redirect:list";
    }
    
    

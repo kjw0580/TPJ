@@ -19,6 +19,12 @@ public interface NoticeService {
    //조회수
    void updateCount(Long gno);
    
+   	//게시글 삭제
+ 	void remove(Long gno);
+ 	
+ 	//게시글 수정
+ 	void modify(NoticeDto dto);
+   
    
    
    //자바 8버전부터 구체 메소드 사용 가능(default 키워드로 가능)
@@ -39,8 +45,6 @@ public interface NoticeService {
                .title(entity.getTitle())
                .content(entity.getContent())
                .writer(entity.getWriter())
-               .regDate(entity.getRegTime())
-               .modDate(entity.getUpdateTime())
                .cnt(entity.getCnt())
                .build();
          return dto;
