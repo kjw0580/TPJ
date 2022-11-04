@@ -16,5 +16,7 @@ public class NoticeDto {
    private String title;
    private String content;
    private String writer;
-   private LocalDateTime regDate, modDate;
+   private Long cnt = 0L;
+   private LocalDateTime reg_time, update_time;
+   
 }

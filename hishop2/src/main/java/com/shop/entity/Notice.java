@@ -1,5 +1,7 @@
 package com.shop.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,8 +41,6 @@ public class Notice extends BaseEntity{
 	private Long cnt = 0L;
 	
 	
-	
-	
 	//수정 시간 테스트 메서드 생성
 	public void changeTitle(String title) {
 		this.title = title;
@@ -48,6 +48,5 @@ public class Notice extends BaseEntity{
 	public void changeContent(String content) {
 		this.content = content;
 	}
-	
 	
 }

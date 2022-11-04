@@ -1,6 +1,5 @@
 package com.shop.repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -30,8 +30,13 @@
          </div>
          <div class="form-group row">
             <label>등록일</label>
-            <input type="text" name="regDate" class="form-control"
-               th:value="${dto.reg_time}" readonly>
+            <input type="text" name="regTime" class="form-control"
+               th:value="${#temporals.format(dto.reg_time, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+         </div>
+         <div class="form-group row">
+            <label>수정일</label>
+            <input type="text" name="updateTime" class="form-control"
+               th:value="${#temporals.format(dto.update_time, 'yyyy-MM-dd HH:mm:ss')}" readonly>
          </div>
            <div class="form-group row">
          	<label >조회수</label>

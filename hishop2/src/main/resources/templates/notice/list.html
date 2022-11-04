@@ -42,7 +42,7 @@
 							type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">[[${dto.title}]]</a> 
 					</td>
 					<td>[[${dto.writer}]]</td>
-					<td>[[${dto.reg_time}]]</td>
+					<td>[[${#temporals.format(dto.reg_time, 'yyyy-MM-dd HH:mm:ss')}]]</td>
 					<td>[[${dto.cnt}]]</td>
 				</tr>
 			</tbody>

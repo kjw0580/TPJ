@@ -45,9 +45,25 @@ public class NoticeController {
    @GetMapping("/read")
    public void read(Long gno, Model model , 
          @ModelAttribute("requestDto") PageRequestDto requestDto) {
+	  //조회수 증가
+	   service.updateCount(gno);
+	  
       NoticeDto dto = service.read(gno);   //게시글 1개
       model.addAttribute("dto", dto);
    }
    
+   //글 삭제
+   @GetMapping("/delete")
+   public String delete(Long gno) {
+	   service.remove(gno);
+	   return "redirect:list";
+   }
+   
+   //글 수정
+   @PostMapping("update")
+   public String modify(NoticeDto noticeDto) {
+	   service.modify(noticeDto);
+	   return "redirect:list";
+   }
    
 }

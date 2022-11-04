@@ -44,7 +44,7 @@
             <div class="container px-4 px-lg-5 my-3">
                 <div class="text-center">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal mb-0">With this shop hompeage template</p>
+                    <p class="lead fw-normal mb-0">welcome to sweethome shop</p>
                 </div>
             </div>
        	</header>
@@ -62,6 +62,7 @@
     </div>
 
 	<!-- 메인 상품 정보 -->
+	
     <div class="row">
         <th:block th:each="item, status: ${items.getContent()}">
             <div class="col-md-4 margin">
@@ -78,7 +79,9 @@
             </div>
         </th:block>
     </div>
-
+    
+    
+	<!-- 페이징 처리 -->
     <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
         <ul class="pagination justify-content-center">
 

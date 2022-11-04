@@ -23,6 +23,11 @@ public class MemberService implements UserDetailsService{
       return memberRepo.save(member);
    }
    
+   //회원 정보 확인
+   public Member view(String email) {
+	   return memberRepo.findByName(email);
+   }
+   
    //이메일 중복 체크 메서드
    private void validateDuplicateMember (Member member) {
       Member findMemberName = memberRepo.findByName(member.getName());

@@ -9,11 +9,20 @@
     			.error{color: #bd2130}
     		</style>
     	</th:block>
-    </head>  
+    </head>
 	<div layout:fragment="content" class="content">
+	<!-- Header-->
+        <header class="py-5 mb-2"  style="background-color:#f3cf98">
+            <div class="container px-4 px-lg-5 my-3">
+                <div class="text-center">
+                    <h1 class="display-4 fw-bolder"><b>Login</b></h1>
+                    <p class="lead fw-normal mb-0">Welcome to sweet Home shop! </p>
+                </div>
+            </div>
+       	</header>
 		<form action="/members/login" method="post">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			<div class="form-group">
+			<div class="form-group mt-3">
 				<label th:for="email">이메일주소</label>
 				<input type="email" name="email" class="form-control"
 					   placeholder="이메일을 입력해주세요">

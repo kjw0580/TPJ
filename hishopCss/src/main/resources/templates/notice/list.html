@@ -31,7 +31,7 @@
 		<table class="table table-striped my-4">
 			<thead>
 				<tr>
-					<th>#</th><th>Title</th><th>Writer</th><th>Regdate</th>
+					<th>#</th><th>Title</th><th>Writer</th><th>Regdate</th><th>Hits</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,7 +42,8 @@
 							type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">[[${dto.title}]]</a> 
 					</td>
 					<td>[[${dto.writer}]]</td>
-					<td>[[${dto.regDate}]]</td>
+					<td>[[${dto.reg_time}]]</td>
+					<td>[[${dto.cnt}]]</td>
 				</tr>
 			</tbody>
 		</table>

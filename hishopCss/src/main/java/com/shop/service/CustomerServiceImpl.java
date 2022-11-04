@@ -3,6 +3,8 @@ package com.shop.service;
 import java.util.Optional;
 import java.util.function.Function;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,63 +42,91 @@ public class CustomerServiceImpl implements CustomerService{
 	    return entity.getGno();
 	}
 	
-	//글 목록보기
-	@Override
-	public PageResultDto<CustomerDto, Customer> getList(PageRequestDto requestDto) {
-		//페이지 처리
-		Pageable pageable = requestDto.getPageable(Sort.by("gno").descending());
-		//검색처리
-		BooleanBuilder booleanBuilder = getSearch(requestDto);
-			
-		Page<Customer> result = repository.findAll(booleanBuilder, pageable);
-		Function<Customer, CustomerDto> fn = (entity -> entityToDto(entity));
-		return new PageResultDto<>(result, fn);
-	}
+	
 
-	//게시글 상세보기
+		//조회수
 		@Override
-		public CustomerDto read(Long gno) {
-			Optional<Customer> result  = repository.findById(gno);
+		public void updateCount(Long gno) {
+			repository.updateCount(gno);
 			
-			//찾아온 객체가 있으면 entity to dto를 호출 아니면 null 반환(삼항 연산자)
-			return result.isPresent() ? entityToDto(result.get()) : null;
 		}
-		
-		//검색 처리
-		private BooleanBuilder getSearch(PageRequestDto requestDto) {
-			String type = requestDto.getType();
-			String keyword = requestDto.getKeyword();
+
+		//게시글 삭제
+		@Override
+		public void remove(Long bno) {
+			repository.deleteById(bno);
+		}
+
+		//게시글 수정
+		@Override
+		public void modify(CustomerDto dto) {
+			//수정할 게시글 가져오기
+			Customer customer = repository.findById(dto.getGno()).get();
 			
-			BooleanBuilder booleanBuilder = new BooleanBuilder();
+			//게시글 수정
+			customer.changeTitle(dto.getTitle());
+			customer.changeContent(dto.getContent());
 			
-			QCustomer qCustomer = QCustomer.customer;
+			//수정 저장
+			repository.save(customer);
+		}
+	
+		//글 목록보기
+		@Override
+		public PageResultDto<CustomerDto, Customer> getList(PageRequestDto requestDto) {
+			//페이지 처리
+			Pageable pageable = requestDto.getPageable(Sort.by("gno").descending());
+			//검색처리
+			BooleanBuilder booleanBuilder = getSearch(requestDto);
+				
+			Page<Customer> result = repository.findAll(booleanBuilder, pageable);
+			Function<Customer, CustomerDto> fn = (entity -> entityToDto(entity));
+			return new PageResultDto<>(result, fn);
+		}
+
+		//게시글 상세보기
+			@Override
+			public CustomerDto read(Long gno) {
+				Optional<Customer> result  = repository.findById(gno);
+				
+				//찾아온 객체가 있으면 entity to dto를 호출 아니면 null 반환(삼항 연산자)
+				return result.isPresent() ? entityToDto(result.get()) : null;
+			}
 			
-			BooleanExpression expression = qCustomer.gno.gt(0L); // gno > 0 
-			booleanBuilder.and(expression);
-			
-			//검색 조건이 없는 경우 null 처리
-			if(type == null || type.trim().length() == 0 ) {
+			//검색 처리
+			private BooleanBuilder getSearch(PageRequestDto requestDto) {
+				String type = requestDto.getType();
+				String keyword = requestDto.getKeyword();
+				
+				BooleanBuilder booleanBuilder = new BooleanBuilder();
+				
+				QCustomer qCustomer = QCustomer.customer;
+				
+				BooleanExpression expression = qCustomer.gno.gt(0L); // gno > 0 
+				booleanBuilder.and(expression);
+				
+				//검색 조건이 없는 경우 null 처리
+				if(type == null || type.trim().length() == 0 ) {
+					return booleanBuilder;
+				}
+				
+				
+				//검색조건 작성
+				BooleanBuilder conditionBuilder = new BooleanBuilder();
+				if(type.contains("t")) {
+					conditionBuilder.or(qCustomer.title.contains(keyword));
+				}
+				if(type.contains("c")) {
+					conditionBuilder.or(qCustomer.content.contains(keyword));
+				}
+				if(type.contains("w")) {
+					conditionBuilder.or(qCustomer.writer.contains(keyword));
+				}
+				//모든 조건 종합
+				booleanBuilder.and(conditionBuilder);
+				
 				return booleanBuilder;
-			}
-			
-			
-			//검색조건 작성
-			BooleanBuilder conditionBuilder = new BooleanBuilder();
-			if(type.contains("t")) {
-				conditionBuilder.or(qCustomer.title.contains(keyword));
-			}
-			if(type.contains("c")) {
-				conditionBuilder.or(qCustomer.content.contains(keyword));
-			}
-			if(type.contains("w")) {
-				conditionBuilder.or(qCustomer.writer.contains(keyword));
-			}
-			//모든 조건 종합
-			booleanBuilder.and(conditionBuilder);
-			
-			return booleanBuilder;
-		}
-		
+			}	
 	   
 	   
 	}
