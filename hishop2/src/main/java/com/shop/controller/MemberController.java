@@ -73,4 +73,8 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "member/view";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3e63a4f9e64f837411c6d226d88f457028392897

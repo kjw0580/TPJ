@@ -41,6 +41,10 @@ public class Notice extends BaseEntity{
 	private Long cnt = 0L;
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 3e63a4f9e64f837411c6d226d88f457028392897
 	//수정 시간 테스트 메서드 생성
 	public void changeTitle(String title) {
 		this.title = title;
@@ -49,4 +53,8 @@ public class Notice extends BaseEntity{
 		this.content = content;
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3e63a4f9e64f837411c6d226d88f457028392897
