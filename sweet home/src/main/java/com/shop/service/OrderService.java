@@ -112,10 +112,11 @@ public class OrderService {
    
    //장바구니 상품 주문하기
    public Long orders(List<OrderDto> orderDtoList, String name) {
-	   Member member = memberRepo.findByName(name);
+	   Member member = memberRepo.findByName(name); 
 	   //Member member = memberRepo.findByEmail(email);
 	   List<OrderItem> orderItemList = new ArrayList<>();
 	   
+	   // 주문할 상품 리스트
 	   for(OrderDto orderDto : orderDtoList) {
 		   Item item = itemRepo.findById(orderDto.getItemId())
 				   .orElseThrow(EntityNotFoundException::new);
@@ -124,7 +125,7 @@ public class OrderService {
 	   }
 	   
 	   //주문 객체 생성
-	   Orders order = Orders.createOrder(member, orderItemList);
+	   Orders order = Orders.createOrder(member, orderItemList); // 회원이랑 주문할 상품 리스트들을 주문에 담음
 	   orderRepo.save(order); //주문하기 저장
 	   return order.getId();
    }

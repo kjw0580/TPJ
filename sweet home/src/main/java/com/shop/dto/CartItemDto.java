@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class CartItemDto {
-
+	// 장바구니에 담을 상품의 id 와 수량 전달 받음
 	@NotNull(message = "상품 아이디는 필수 입력 값입니다.")
 	private Long itemId;
 

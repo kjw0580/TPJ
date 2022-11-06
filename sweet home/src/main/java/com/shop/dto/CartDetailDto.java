@@ -6,6 +6,9 @@ import lombok.Setter;
 @Getter @Setter
 public class CartDetailDto {
 	
+	// 장바구니 조회 페이지에 전달
+	// 장바구니에 들어있는 상품들을 조회하기 위해
+	
 	private Long cartItemId;  //장바구니 상품 아이디
 	
 	private String itemNm; //상품명

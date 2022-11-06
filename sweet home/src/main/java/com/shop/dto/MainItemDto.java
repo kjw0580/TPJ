@@ -19,7 +19,7 @@ public class MainItemDto {
    private Integer price;
    
    //생성자
-   @QueryProjection
+   @QueryProjection // entity 로 원래 바꿨었는데, 이 어노테이션을 쓰면은 dto 로 객체를 변환할 수 있다.
    public MainItemDto(Long id, String itemNm, String itemDetail, String imgUrl, Integer price) {
       super();
       this.id = id;

@@ -9,6 +9,14 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.java.Log;
 
+
+/*
+UUID: Universally Unique Identifier
+서로 다른 개체들을 구별하기 위해서 이름을 부여할 때 사용
+실제로는 중복될 가능성이 거의 없어서 그냥 파일 이름으로 사용하면 됨
+ */
+
+//파일을 처리하는 파일 서비스!
 @Log
 @Service
 public class FileService {
@@ -36,7 +44,7 @@ public class FileService {
 	public void deleteFile(String filePath) {
 		//파일이 저장된 경로를 이용하여 파일 객체를 생성함
 		File deleteFile = new File(filePath);
-		if(deleteFile.exists()) {
+		if(deleteFile.exists()) { // 해당 파일이 존재하면은 파일을 삭제
 			deleteFile.delete();
 			log.info("파일을 삭제하였습니다.");
 		}else {

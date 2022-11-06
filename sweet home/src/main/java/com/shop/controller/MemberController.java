@@ -47,6 +47,8 @@ public class MemberController {
    public String memberForm(Model model) {
       model.addAttribute("memberFormDto", new MemberFormDto());
       return "member/memberForm";
+   // 회원가입 성공 시 메인으로 리다이렉트
+   // 실패하면 다시 회원가입 페이지로 돌아감
    }
    
    //회원 가입 처리
@@ -54,14 +56,19 @@ public class MemberController {
    @PostMapping("/new")
    public String memberForm(@Valid MemberFormDto memberFormDto, 
           BindingResult bindingResult , Model model, HttpServletResponse response) throws IOException {
-      //유효성 검증
-      if(bindingResult.hasErrors()) {
+	   // Valid 검증하려는 객체(memberFormDto) 앞에 붙임
+       // 검증 완료 되면은 결과를 bindingResult(TF) 에다가 담아줌
+
+       //BindingResult는 검증 오류가 발생할 경우 오류 내용을 보관하는 스프링 프레임워크에서 제공하는 객체입니다.
+       // bindingResult.addError 를 해줘야 하지만, DTO 에서 어노테이션으로 처리했기 때문에 페이지 리턴만 해주면 된다!!!
+	   
+      if(bindingResult.hasErrors()) { // bindingResult.hasErrors 를 호출해서, 에러가 있으면 회원가입 페이지로 return 함
          return "member/memberForm";
       }
       //이메일 중복 처리
       try {
-         Member member = Member.createMember(memberFormDto, pwencoder);
-         memberService.saveMember(member);
+         Member member = Member.createMember(memberFormDto, pwencoder); //member: entity, createMember 에서 dto-> entity
+         memberService.saveMember(member); //saveMember: 중복가입막는거 처리해주고 save
          ScriptUtils.alertAndMovePage(response, "회원가입이 정상적으로 완료되었습니다.", "../");
       }catch(IllegalStateException e) {
          model.addAttribute("errorMsg", e.getMessage());

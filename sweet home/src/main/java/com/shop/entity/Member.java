@@ -46,7 +46,7 @@ public class Member extends BaseEntity{
 		Member member = new Member();
 		member.setName(memberFormDto.getName());
 		member.setEmail(memberFormDto.getEmail());
-		String password = passwordEncoder.encode(memberFormDto.getPassword());
+		String password = passwordEncoder.encode(memberFormDto.getPassword()); // BCryptPasswordEncoder Bean 을 파라미터로 넘겨서 비번을 암호화함
 		member.setPassword(password);
 		member.setAddress(memberFormDto.getAddress());
 		member.setRole(Role.ADMIN);

@@ -103,15 +103,15 @@ public class CartService {
 	//장바구니 삼품 수량 변경
 	 public void updateCartItem(Long cartItemId, int count) {
 		 CartItem cartItem = cartItemRepo.findById(cartItemId)
-				 .orElseThrow(EntityNotFoundException::new);
-		 cartItem.updateCount(count);
+				 .orElseThrow(EntityNotFoundException::new);// 장바구니의 상품을 조회해서
+		 cartItem.updateCount(count);// 장바구니 상품 개수 ++
 	 }
 	 
 	 //장바구니 상품 삭제
 	 public void deleteCartItem(Long cartItemId) {
 		 CartItem cartItem = cartItemRepo.findById(cartItemId)
-				 .orElseThrow(EntityNotFoundException::new);
-		 cartItemRepo.delete(cartItem);
+				 .orElseThrow(EntityNotFoundException::new);// 장바구니의 상품을 조회해서
+		 cartItemRepo.delete(cartItem);// 장바구니 상품 제거
 	 }
 	 
 	 //장바구니 품목 주문하기
@@ -119,6 +119,7 @@ public class CartService {
 		 //orderDtoList 생성
 		 List<OrderDto> orderDtoList = new ArrayList<>();
 		 
+		// 주문한 상품을 orderDtoList 에 담아줌
 		 for(CartOrderDto cartOrderDto : cartOrderDtoList) {
 			 CartItem cartItem = cartItemRepo.findById(cartOrderDto.getCartItemId())
 					 .orElseThrow(EntityNotFoundException::new);
@@ -127,6 +128,7 @@ public class CartService {
 			 orderDto.setItemId(cartItem.getItem().getId());
 			 orderDto.setCount(cartItem.getCount());
 			 orderDtoList.add(orderDto);
+			// 여러 개의 상품을 하나의 주문에 담아야 함
 		 }
 		 
 		 //주문 후 장바구니 품목 삭제

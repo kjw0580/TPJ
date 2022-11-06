@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class OrderDto {
-
+	//  주문할 상품의 아이디와 주문 수량을 전달받을 dto 임 (상품 상세 페이지에서 전달받음)
 	@NotNull(message = "상품 아이디는 필수 입력 값입니다.")
 	private Long itemId;
 	

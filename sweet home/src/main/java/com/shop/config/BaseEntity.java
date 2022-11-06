@@ -15,6 +15,7 @@ import lombok.Getter;
 @Getter
 public abstract class BaseEntity extends BaseTimeEntity{
 	
+	// 등록한사람, 수정한사람만 있는 entity + 상속받은 등록일 수정일 entity 도 있음
 	@CreatedBy
 	@Column(updatable = false)
 	private String createdBy;  //등록자
