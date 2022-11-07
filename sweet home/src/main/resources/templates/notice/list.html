@@ -70,7 +70,7 @@
 			</li>
 		</ul>
 		
-		<div align="right">
+		<div align="right" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 			<a th:href="@{/notice/register}" class="btn btn-primary">글쓰기</a>
 		</div>
 		<!-- 모달창 -->
